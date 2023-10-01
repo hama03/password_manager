@@ -7,16 +7,16 @@ echo "パスワードマネージャーへようこそ！"
 
 while true; do
     echo "次の選択肢から入力してください(Add Password/Get Password/Exit)："
-    read choice
+    read -r choice
 
     case $choice in
         "Add Password")
             echo "サービス名を入力してください："
-            read service
+            read -r service
             echo "ユーザー名を入力してください："
-            read username
+            read -r username
             echo "パスワードを入力してください："
-            read password
+            read -r password
             
             # 復号化して追記
             gpg --decrypt $ENCRYPTED_FILE 2> /dev/null > $PASSWORD_FILE || true
@@ -28,7 +28,7 @@ while true; do
 
         "Get Password")
             echo "サービス名を入力してください："
-            read service
+            read -r service
             
             # 一時的に復号化して検索
             gpg --decrypt $ENCRYPTED_FILE 2> /dev/null > $PASSWORD_FILE || true
